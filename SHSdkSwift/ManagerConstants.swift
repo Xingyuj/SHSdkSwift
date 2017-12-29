@@ -23,6 +23,7 @@ public class ManagerConstants {
     static let MODEL = "model"
     static let OPERATING_SYSTEM = "operating_system"
     static let OS_VERSION = "os_version"
+    static let MAC_ADDRESS = "macaddress"
 
     //logging constants
     static let CODE = "code"

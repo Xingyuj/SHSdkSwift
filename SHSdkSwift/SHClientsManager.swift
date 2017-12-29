@@ -97,6 +97,7 @@ open class SHClientsManager {
                     if let installid = _res["value"]["installid"].rawString() {
                         self.installId = installid
                         NSLog("install id: "+installid)
+                        print("update install begin....")
                         self.updateInstall()
                     } else {
                         print("app_status.location_updates is nil")
@@ -118,15 +119,16 @@ open class SHClientsManager {
             managerUtils.requestScheme = ManagerConstants.HTTPS_SCHEME
             managerUtils.encoding = JSONEncoding.default
             managerUtils.path = ManagerConstants.INSTALL_UPDATE
+            managerUtils.queryItems = [URLQueryItem(name: "installid", value: installId)]
             managerUtils.parameters = [
                 ManagerConstants.APP_KEY: appKey,
                 ManagerConstants.INSTALL_ID: installId ?? "",
-                ManagerConstants.SH_LIBRARY_VERSION: ManagerUtils.getPlistVersion,
+                ManagerConstants.SH_LIBRARY_VERSION: ManagerUtils.getPlistVersion(),
                 ManagerConstants.OPERATING_SYSTEM: "ios",
-                ManagerConstants.CLIENT_VERSION: ManagerUtils.getPlistVersion,
+                ManagerConstants.CLIENT_VERSION: ManagerUtils.getPlistVersion(),
                 ManagerConstants.MODEL: model ?? "",
                 ManagerConstants.OS_VERSION: UIDevice.current.systemVersion,
-                ManagerConstants.MAC_ADDRESS: UIDevice.current.identifierForVendor ?? ""
+                ManagerConstants.MAC_ADDRESS: UIDevice.current.identifierForVendor?.uuidString ?? ""
             ]
             managerUtils.headers = [
                 "X-App-Key": appKey,

@@ -10,6 +10,6 @@ target 'SHSdkSwift' do
   # Pods for SHSdkSwift
     pod 'Alamofire', '~> 4.5'
     pod 'SwiftyJSON'
-
+    pod 'SwiftyBeaver'
 end
 

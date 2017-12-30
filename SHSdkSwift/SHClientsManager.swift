@@ -129,9 +129,9 @@ open class SHClientsManager {
             apiProcessor.parameters = [
                 ManagerConstants.APP_KEY: appKey,
                 ManagerConstants.INSTALL_ID: installId ?? "",
-                ManagerConstants.SH_LIBRARY_VERSION: ManagerUtils.getPlistVersion(),
+                ManagerConstants.SH_LIBRARY_VERSION: ManagerUtils.getSDKVersion(),
                 ManagerConstants.OPERATING_SYSTEM: "ios",
-                ManagerConstants.CLIENT_VERSION: ManagerUtils.getPlistVersion(),
+                ManagerConstants.CLIENT_VERSION: ManagerUtils.getSDKVersion(),
                 ManagerConstants.MODEL: model ?? "",
                 ManagerConstants.OS_VERSION: UIDevice.current.systemVersion,
                 ManagerConstants.MAC_ADDRESS: UIDevice.current.identifierForVendor?.uuidString ?? ""

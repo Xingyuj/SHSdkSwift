@@ -9,6 +9,9 @@
 import Foundation
 
 public class ManagerConstants {
+    static let versionSDK = "1.8.8"
+    
+    //api call
     static let HTTPS_SCHEME = "https"
     static let ROUTE_SERVER = "route.streethawk.com"
     static let ROUTE_QUERY = "/v1/apps/status"

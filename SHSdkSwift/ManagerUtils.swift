@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 open class ManagerUtils{
     
@@ -22,7 +23,19 @@ open class ManagerUtils{
     }
     
     public static func getPlistVersion() -> String{
-        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+//        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+        return "1.8.8"
+    }
+    
+    public static func assembleLogRecords(_ logBuffer: inout Array<Any>, _ content: JSON){
+        var targetJson = content
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        let createdAt = formatter.string(from: Date())
+        targetJson[ManagerConstants.LOGID].string = UUID().uuidString
+        targetJson[ManagerConstants.CREATED_ON_CLIENT].string = createdAt
+        targetJson[ManagerConstants.CREATED_LOCAL_TIME].string = createdAt
+        logBuffer.append(targetJson.rawValue)
     }
     
 }

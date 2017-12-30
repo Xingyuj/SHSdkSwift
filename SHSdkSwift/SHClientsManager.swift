@@ -7,12 +7,16 @@ import Foundation
 import Alamofire
 import os.log
 import SwiftyBeaver
+import SwiftyJSON
+
 let log = SwiftyBeaver.self
 
 /// This is a convenience class for the typical single user case. To use this
 
 open class SHClientsManager {
+    public static var shProcessor: SHClientsManager?
     var appKey: String
+    var logBuffer: Array<Any>
     var locationUpdates: String?
     var host: String?
     var libVersion: String?
@@ -23,6 +27,7 @@ open class SHClientsManager {
     
     init(appKey: String) {
         self.appKey = appKey
+        self.logBuffer = []
         if let version = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String {
             self.libVersion = version
         }
@@ -38,21 +43,22 @@ open class SHClientsManager {
     public static func setupWithAppKey(_ appKey: String) {
         NSLog("[StreetHawk] setupWithAppKey [" + appKey + "]")
         let manager = SHClientsManager.init(appKey: appKey)
+        self.shProcessor = manager
         manager.findAppHost()
     }
     
     private func findAppHost(){
         print("findAppHost beginning....")
-        let managerUtils = SHApiProcessor.init(ManagerConstants.ROUTE_SERVER)
-        managerUtils.requestScheme = ManagerConstants.HTTPS_SCHEME
-        managerUtils.encoding = URLEncoding.default
-        managerUtils.path = ManagerConstants.ROUTE_QUERY
-        managerUtils.parameters = ["app_key": appKey]
-        managerUtils.method = HTTPMethod.get
-        managerUtils.headers = ["X-App-Key": "hipointX", "X-Version": "1.8.8", "User-Agent": "hipointX(1.8.8)"]
+        let apiProcessor = SHApiProcessor.init(ManagerConstants.ROUTE_SERVER)
+        apiProcessor.requestScheme = ManagerConstants.HTTPS_SCHEME
+        apiProcessor.encoding = URLEncoding.default
+        apiProcessor.path = ManagerConstants.ROUTE_QUERY
+        apiProcessor.parameters = ["app_key": appKey]
+        apiProcessor.method = HTTPMethod.get
+        apiProcessor.headers = ["X-App-Key": "hipointX", "X-Version": "1.8.8", "User-Agent": "hipointX(1.8.8)"]
         
         print("prepare processing SHApi....")
-        managerUtils.requestHandler(){ res, error in
+        apiProcessor.requestHandler(){ res, error in
             if let _res = res {
                 if let locationUpdates = _res["app_status"]["location_updates"].rawString() {
                     self.locationUpdates = locationUpdates
@@ -114,31 +120,31 @@ open class SHClientsManager {
         print("updateInstall beginning....")
         if let _host = host {
             print("updateInstall host got....")
-            let managerUtils = SHApiProcessor.init((URL(string: _host)?.host)!)
+            let apiProcessor = SHApiProcessor.init((URL(string: _host)?.host)!)
             print("init ManagerUtil done....")
-            managerUtils.requestScheme = ManagerConstants.HTTPS_SCHEME
-            managerUtils.encoding = JSONEncoding.default
-            managerUtils.path = ManagerConstants.INSTALL_UPDATE
-            managerUtils.queryItems = [URLQueryItem(name: "installid", value: installId)]
-            managerUtils.parameters = [
+            apiProcessor.requestScheme = ManagerConstants.HTTPS_SCHEME
+            apiProcessor.encoding = JSONEncoding.default
+            apiProcessor.path = ManagerConstants.INSTALL_UPDATE
+            apiProcessor.queryItems = [URLQueryItem(name: "installid", value: installId)]
+            apiProcessor.parameters = [
                 ManagerConstants.APP_KEY: appKey,
                 ManagerConstants.INSTALL_ID: installId ?? "",
-                ManagerConstants.SH_LIBRARY_VERSION: ManagerUtils.getPlistVersion(),
+                ManagerConstants.SH_LIBRARY_VERSION: ManagerUtils.getSDKVersion(),
                 ManagerConstants.OPERATING_SYSTEM: "ios",
-                ManagerConstants.CLIENT_VERSION: ManagerUtils.getPlistVersion(),
+                ManagerConstants.CLIENT_VERSION: ManagerUtils.getSDKVersion(),
                 ManagerConstants.MODEL: model ?? "",
                 ManagerConstants.OS_VERSION: UIDevice.current.systemVersion,
                 ManagerConstants.MAC_ADDRESS: UIDevice.current.identifierForVendor?.uuidString ?? ""
             ]
-            managerUtils.headers = [
+            apiProcessor.headers = [
                 "X-App-Key": appKey,
                 "X-Installid": installId ?? "",
                 "Content-Type": "application/json"
             ]
-            managerUtils.method = HTTPMethod.post
+            apiProcessor.method = HTTPMethod.post
             
             print("updateInstall initial done....")
-            managerUtils.requestHandler(){ res, error in
+            apiProcessor.requestHandler(){ res, error in
                 print("updateInstall res returned....")
                 if let _res = res {
                     log.info("Install update successful, res: \(String(describing: _res))")
@@ -151,6 +157,106 @@ open class SHClientsManager {
             }
         } else {
             os_log("host is unclear", type: .error)
+        }
+    }
+    
+    private func presetCommonValues(_ processor: SHApiProcessor, method: HTTPMethod? = HTTPMethod.get){
+        log.debug("presetCommonValues....")
+        processor.requestScheme = ManagerConstants.HTTPS_SCHEME
+        processor.encoding = JSONEncoding.default
+        processor.queryItems = [URLQueryItem(name: "installid", value: installId)]
+        processor.parameters = [
+            ManagerConstants.APP_KEY: appKey,
+            ManagerConstants.INSTALL_ID: installId ?? "",
+        ]
+        processor.headers = [
+            "X-App-Key": appKey,
+            "X-Installid": installId ?? "",
+            "Content-Type": "application/json"
+        ]
+        processor.method = method
+        log.debug("presetCommonValues done....")
+    }
+    
+    public func tagViaApi(_ content: Dictionary<String, String>, authToken: String){
+        if (host == nil){
+            return
+        }
+        log.debug("tagViaApi begin")
+        
+        print((URL(string: host!)?.host)!)
+        let apiProcessor = SHApiProcessor.init((URL(string: host!)?.host)!)
+        presetCommonValues(apiProcessor, method: HTTPMethod.post)
+        let presetParameters = JSON(apiProcessor.parameters!)
+        guard let resultParam = try? presetParameters.merged(with: JSON(content)) else {
+            log.error("error occur when merging two json, thrown by SwiftyJSON merged method")
+            return
+        }
+        apiProcessor.path = ManagerConstants.V3_TAGS
+        apiProcessor.headers!["X-Auth-Token"] = authToken
+        apiProcessor.parameters = (resultParam.rawValue as! [String:Any])
+        
+        log.debug("processLogline initial finished")
+        apiProcessor.requestHandler(){ res, error in
+            print("tagViaApi sent successful res returned....")
+            if let _res = res {
+                log.info("tagViaApi sent successful, res: \(String(describing: _res))")
+                print("tagViaApi sent successful, res: \(String(describing: _res))")
+            } else if let _error = error {
+                NSLog(_error.localizedDescription)
+            } else {
+                os_log("Both response and error are nil return from server", type: .error)
+            }
+        }
+    }
+    
+    public func tagViaLogline(_ content: Dictionary<String, String>){
+        var jsonContent = JSON(content)
+        jsonContent[ManagerConstants.CODE].int = ManagerConstants.CODE_UPDATE_CUSTOM_TAG
+        sendPriorityLogline(jsonContent)
+    }
+    
+    public func sendPriorityLogline(_ content: JSON){
+        var immediateLogBuffer: Array<Any> = []
+        ManagerUtils.assembleLogRecords(&immediateLogBuffer, content)
+        processLogline(immediateLogBuffer)
+    }
+    
+    public func processLogline(_ records: Array<Any>){
+        log.info("processLogline begin")
+        if (host == nil){
+            return
+        }
+        print((URL(string: host!)?.host)!)
+        let apiProcessor = SHApiProcessor.init((URL(string: host!)?.host)!)
+        var param = [String: Any]()
+        param = [
+            ManagerConstants.APP_KEY: appKey,
+            ManagerConstants.INSTALL_ID: installId ?? "",
+        ]
+        param[ManagerConstants.RECORDS] = records
+        apiProcessor.requestScheme = ManagerConstants.HTTPS_SCHEME
+        apiProcessor.encoding = JSONEncoding.default
+        apiProcessor.path = ManagerConstants.INSTALL_LOG
+        apiProcessor.queryItems = [URLQueryItem(name: "installid", value: installId)]
+        apiProcessor.parameters = param
+        apiProcessor.headers = [
+            "X-App-Key": appKey,
+            "X-Installid": installId ?? "",
+            "Content-Type": "application/json"
+        ]
+        apiProcessor.method = HTTPMethod.post
+        log.debug("processLogline initial finished")
+        apiProcessor.requestHandler(){ res, error in
+            print("Logline sent successful res returned....")
+            if let _res = res {
+                log.info("Logline sent successful, res: \(String(describing: _res))")
+                print("Logline sent successful, res: \(String(describing: _res))")
+            } else if let _error = error {
+                NSLog(_error.localizedDescription)
+            } else {
+                os_log("Both response and error are nil return from server", type: .error)
+            }
         }
     }
     

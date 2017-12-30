@@ -41,6 +41,10 @@ open class SHApiProcessor {
         print("parameters: \(String(describing: parameters))")
         print("encoding: \(String(describing: encoding!))")
         print("headers: \(String(describing: headers!))")
+        if (urlComponents.url == nil || encoding == nil || method == nil){
+            log.error("urlComponents.url/encoding/method is nil, please check!")
+            return
+        }
         Alamofire.request(urlComponents.url!, method: method!, parameters: parameters, encoding: encoding!, headers: headers).responseJSON { response in
             print("Response: \(String(describing: response.response))")
             print("Result: \(String(describing: response.result.value))") // response serialization result

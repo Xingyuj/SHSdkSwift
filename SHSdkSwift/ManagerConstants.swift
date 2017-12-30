@@ -9,11 +9,16 @@
 import Foundation
 
 public class ManagerConstants {
+    static let versionSDK = "1.8.8"
+    
+    //api call
     static let HTTPS_SCHEME = "https"
     static let ROUTE_SERVER = "route.streethawk.com"
     static let ROUTE_QUERY = "/v1/apps/status"
     static let INSTALL_REGISTER = "/v1/installs/register"
     static let INSTALL_UPDATE = "/v1/installs/update"
+    static let INSTALL_LOG = "/v2/installs/log"
+    static let V3_TAGS = "/v3/tags"
     
     //install properties
     static let INSTALL_ID = "installid"
@@ -24,11 +29,16 @@ public class ManagerConstants {
     static let OPERATING_SYSTEM = "operating_system"
     static let OS_VERSION = "os_version"
     static let MAC_ADDRESS = "macaddress"
-
+    
     //logging constants
     static let CODE = "code"
+    static let BUFFER_SIZE = 10
     static let SHTIMEZONE = "shtimezone"
-    
+    static let RECORDS = "records"
+    static let LOGID = "log_id"
+    static let CREATED_ON_CLIENT = "created_on_client"
+    static let CREATED_LOCAL_TIME = "created_local_time"
+
     /*Push notification codes*/
     
     static let CODE_PUSH_ACK = 8202 // Added in v2

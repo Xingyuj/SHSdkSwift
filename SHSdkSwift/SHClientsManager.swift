@@ -13,19 +13,19 @@ let log = SwiftyBeaver.self
 
 /// This is a convenience class for the typical single user case. To use this
 
-open class SHClientsManager {
-    public static var shProcessor: SHClientsManager?
-    var appKey: String
+@objc public class SHClientsManager:NSObject {
+    @objc public static var shProcessor: SHClientsManager?
+    @objc public var appKey: String
     var logBuffer: Array<Any>
     var locationUpdates: String?
-    var host: String?
+    @objc public var host: String?
     var libVersion: String?
     var growthHost: String?
     var installId: String?
     var model: String?
     var osVersion: String?
-    
-    init(appKey: String) {
+
+    @objc init(appKey: String) {
         self.appKey = appKey
         self.logBuffer = []
         if let version = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String {
@@ -40,14 +40,22 @@ open class SHClientsManager {
         log.addDestination(file)
     }
     
-    public static func setupWithAppKey(_ appKey: String) {
+    @objc public static func setupWithAppKey(_ appKey: String, completionHandler: @escaping (String) -> ()) {
         NSLog("[StreetHawk] setupWithAppKey [" + appKey + "]")
         let manager = SHClientsManager.init(appKey: appKey)
         self.shProcessor = manager
-        manager.findAppHost()
+        manager.findAppHost(){ result in
+            log.debug("request app status finished")
+            let host = result!["host"].stringValue
+            completionHandler(host)
+            manager.host = host
+            manager.growthHost = result!["growthHost"].stringValue
+            manager.locationUpdates = result!["locationUpdates"].stringValue
+            manager.registerInstall()
+        }
     }
     
-    private func findAppHost(){
+    private func findAppHost(completionHandler: @escaping (JSON?) -> ()){
         print("findAppHost beginning....")
         let apiProcessor = SHApiProcessor.init(ManagerConstants.ROUTE_SERVER)
         apiProcessor.requestScheme = ManagerConstants.HTTPS_SCHEME
@@ -56,26 +64,27 @@ open class SHClientsManager {
         apiProcessor.parameters = ["app_key": appKey]
         apiProcessor.method = HTTPMethod.get
         apiProcessor.headers = ["X-App-Key": "hipointX", "X-Version": "1.8.8", "User-Agent": "hipointX(1.8.8)"]
-        
+
         print("prepare processing SHApi....")
         apiProcessor.requestHandler(){ res, error in
             if let _res = res {
+                var result = JSON()
                 if let locationUpdates = _res["app_status"]["location_updates"].rawString() {
-                    self.locationUpdates = locationUpdates
+                    result["locationUpdates"].string = locationUpdates
                 } else {
                     print("app_status.location_updates is nil")
                 }
                 if let host = _res["app_status"]["host"].rawString() {
-                    self.host = host
-                    self.registerInstall()
+                    result["host"].string = host
                 } else {
                     print("app_status.host is nil")
                 }
                 if let growthHost = _res["app_status"]["growth_host"].rawString() {
-                    self.growthHost = growthHost
+                    result["growthHost"].string = growthHost
                 } else {
                     print("app_status.growth_host is nil")
                 }
+                completionHandler(result)
             } else if let _error = error {
                 NSLog(_error.localizedDescription)
             } else {
@@ -178,7 +187,7 @@ open class SHClientsManager {
         log.debug("presetCommonValues done....")
     }
     
-    public func tagViaApi(_ content: Dictionary<String, String>, authToken: String){
+    @objc public func tagViaApi(_ content: Dictionary<String, String>, authToken: String){
         if (host == nil){
             return
         }
@@ -210,7 +219,7 @@ open class SHClientsManager {
         }
     }
     
-    public func tagViaLogline(_ content: Dictionary<String, String>){
+    @objc public func tagViaLogline(_ content: Dictionary<String, String>){
         var jsonContent = JSON(content)
         jsonContent[ManagerConstants.CODE].int = ManagerConstants.CODE_UPDATE_CUSTOM_TAG
         sendPriorityLogline(jsonContent)

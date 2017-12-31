@@ -22,9 +22,8 @@ open class ManagerUtils{
         return version
     }
     
-    public static func getPlistVersion() -> String{
-//        return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-        return "1.8.8"
+    public static func getSDKVersion() -> String{
+        return ManagerConstants.versionSDK
     }
     
     public static func assembleLogRecords(_ logBuffer: inout Array<Any>, _ content: JSON){

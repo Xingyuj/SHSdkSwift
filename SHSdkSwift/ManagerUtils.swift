@@ -10,7 +10,8 @@ import Foundation
 import SwiftyJSON
 
 open class ManagerUtils{
-    
+    static var session: String = String(Int(Date().timeIntervalSince1970 * 1000))
+
     public static func getPlistValue(_ value: String) -> String{
         var version = ""
         if let fileUrl = Bundle.main.url(forResource: "info", withExtension: "plist"),
@@ -26,15 +27,23 @@ open class ManagerUtils{
         return ManagerConstants.versionSDK
     }
     
-    public static func assembleLogRecords(_ logBuffer: inout Array<Any>, _ content: JSON){
+    public static func assembleLogRecords(_ logBuffer: inout Array<Any>, _ content: JSON, _ newSession: Bool? = false){
         var targetJson = content
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         let createdAt = formatter.string(from: Date())
+        if newSession! {
+            generateNewSessionId()
+        }
         targetJson[ManagerConstants.LOGID].string = UUID().uuidString
+        targetJson[ManagerConstants.SESSIONID].string = ManagerUtils.session
         targetJson[ManagerConstants.CREATED_ON_CLIENT].string = createdAt
         targetJson[ManagerConstants.CREATED_LOCAL_TIME].string = createdAt
         logBuffer.append(targetJson.rawValue)
+    }
+    
+    private static func generateNewSessionId(){
+        ManagerUtils.session = String(Int(Date().timeIntervalSince1970 * 1000))
     }
     
 }

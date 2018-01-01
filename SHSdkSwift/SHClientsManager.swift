@@ -232,7 +232,7 @@ let log = SwiftyBeaver.self
         }
     }
     
-    public func flushBuffer(completionHandler: @escaping (Dictionary<String, Any>) -> ()){
+    @objc public func flushBuffer(completionHandler: @escaping (Dictionary<String, Any>) -> ()){
         if logBuffer.isEmpty {
             log.info("unable to flush, log buffer is empty")
             return
@@ -251,7 +251,7 @@ let log = SwiftyBeaver.self
     }
 
     // simulateNormalLogline not include complete ligline set
-    public func simulateNormalLogline(_ action: String){
+    @objc public func simulateNormalLogline(_ action: String){
         var content = JSON()
         switch action {
         case "completeActivity":

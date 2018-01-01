@@ -36,6 +36,7 @@ public class ManagerConstants {
     static let SHTIMEZONE = "shtimezone"
     static let RECORDS = "records"
     static let LOGID = "log_id"
+    static let SESSIONID = "session_id"
     static let CREATED_ON_CLIENT = "created_on_client"
     static let CREATED_LOCAL_TIME = "created_local_time"
 

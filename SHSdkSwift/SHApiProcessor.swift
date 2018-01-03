@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import os.log
 
-open class SHApiProcessor {
+public class SHApiProcessor {
     var baseUrl: String
     var requestScheme: String?
     var path: String?

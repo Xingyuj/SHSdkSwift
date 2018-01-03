@@ -9,8 +9,8 @@
 import Foundation
 import SwiftyJSON
 
-open class ManagerUtils{
-    static var session: String = String(Int(Date().timeIntervalSince1970 * 1000))
+public class ManagerUtils{
+    static var session: String = String(Int64(Date().timeIntervalSince1970 * 1000))
 
     public static func getPlistValue(_ value: String) -> String{
         var version = ""

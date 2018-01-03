@@ -10,6 +10,13 @@ import SwiftyJSON
 
 let log = SwiftyBeaver.self
 
+enum Notes: String {
+    case initialInstallDone = "initialInstallDone"
+    var notification : Notification.Name  {
+        return Notification.Name(rawValue: self.rawValue )
+    }
+}
+
 @objc public class SHClientsManager:NSObject {
     @objc public static var shProcessor: SHClientsManager?
     @objc public var appKey: String
@@ -39,6 +46,9 @@ let log = SwiftyBeaver.self
         file.logFileURL = url
         log.addDestination(console)
         log.addDestination(file)
+    }
+    
+    @objc public func startHeartBeating(){
         // set timer for heart beat
         self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(heartBeat), userInfo: nil, repeats: true)
     }
@@ -48,11 +58,18 @@ let log = SwiftyBeaver.self
         accumulateLogline(content)
         log.debug("heart still beating")
     }
+
     
     @objc public static func setupWithAppKey(_ appKey: String, completionHandler: @escaping (String?, String?) -> ()) {
         log.info("[StreetHawk] setupWithAppKey [\(appKey)]")
+        
         let manager = SHClientsManager.init(appKey: appKey)
         self.shProcessor = manager
+        NotificationCenter.default.addObserver(
+            manager,
+            selector: #selector(manager.startHeartBeating),
+            name: Notes.initialInstallDone.notification,
+            object: nil)
         manager.findAppHost(){ result in
             log.debug("request app status finished")
             let host = result!["host"].stringValue
@@ -65,6 +82,7 @@ let log = SwiftyBeaver.self
                     manager.installId = installid
                     completionHandler(nil, installid)
                     log.info("install id: \(installid)")
+                    NotificationCenter.default.post(name: Notes.initialInstallDone.notification, object: manager, userInfo: nil)
                     manager.updateInstall()
                 } else {
                     log.error("register result contains no installid")
@@ -86,7 +104,7 @@ let log = SwiftyBeaver.self
 
         apiProcessor.requestHandler(){ res, error in
             if let _res = res {
-                var result = JSON()
+                var result = JSON([String: String]())
                 if let locationUpdates = _res["app_status"]["location_updates"].rawString() {
                     result["locationUpdates"].string = locationUpdates
                 } else {
@@ -252,7 +270,7 @@ let log = SwiftyBeaver.self
 
     // simulateNormalLogline not include complete ligline set
     @objc public func simulateNormalLogline(_ action: String){
-        var content = JSON()
+        var content = JSON([String: String]())
         switch action {
         case "completeActivity":
             content = JSON([ManagerConstants.CODE: ManagerConstants.CODE_COMPLETE_ACTIVITY])

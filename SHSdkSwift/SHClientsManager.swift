@@ -10,9 +10,9 @@ import SwiftyJSON
 
 let log = SwiftyBeaver.self
 
-enum Notes: String {
+public enum Notes: String {
     case initialInstallDone = "initialInstallDone"
-    var notification : Notification.Name  {
+    public var notification : Notification.Name  {
         return Notification.Name(rawValue: self.rawValue )
     }
 }
@@ -20,13 +20,12 @@ enum Notes: String {
 @objc public class SHClientsManager:NSObject {
     @objc public static var shProcessor: SHClientsManager?
     @objc public var appKey: String
-    @objc var installid: String?
+    @objc public var installid: String?
     @objc public var host: String?
     var logBuffer: Array<Any>
     var locationUpdates: String?
     var libVersion: String?
     var growthHost: String?
-    var installId: String?
     var model: String?
     var osVersion: String?
     var timer = Timer()
@@ -60,7 +59,7 @@ enum Notes: String {
     }
 
     
-    @objc public static func setupWithAppKey(_ appKey: String, completionHandler: @escaping (String?, String?) -> ()) {
+    @objc public static func setupWithAppKey(_ appKey: String) {
         log.info("[StreetHawk] setupWithAppKey [\(appKey)]")
         
         let manager = SHClientsManager.init(appKey: appKey)
@@ -70,17 +69,16 @@ enum Notes: String {
             selector: #selector(manager.startHeartBeating),
             name: Notes.initialInstallDone.notification,
             object: nil)
+        
         manager.findAppHost(){ result in
             log.debug("request app status finished")
             let host = result!["host"].stringValue
-            completionHandler(host, nil)
             manager.host = host
             manager.growthHost = result!["growthHost"].stringValue
             manager.locationUpdates = result!["locationUpdates"].stringValue
             manager.registerInstall(){ result in
                 if let installid = result!["value"]["installid"].rawString() {
-                    manager.installId = installid
-                    completionHandler(nil, installid)
+                    manager.installid = installid
                     log.info("install id: \(installid)")
                     NotificationCenter.default.post(name: Notes.initialInstallDone.notification, object: manager, userInfo: nil)
                     manager.updateInstall()
@@ -191,14 +189,14 @@ enum Notes: String {
         log.debug("presetCommonValues....")
         processor.requestScheme = ManagerConstants.HTTPS_SCHEME
         processor.encoding = JSONEncoding.default
-        processor.queryItems = [URLQueryItem(name: "installid", value: installId)]
+        processor.queryItems = [URLQueryItem(name: "installid", value: installid)]
         processor.parameters = [
             ManagerConstants.APP_KEY: appKey,
-            ManagerConstants.INSTALL_ID: installId ?? "",
+            ManagerConstants.INSTALL_ID: installid ?? "",
         ]
         processor.headers = [
             "X-App-Key": appKey,
-            "X-Installid": installId ?? "",
+            "X-Installid": installid ?? "",
             "Content-Type": "application/json"
         ]
         processor.method = method
@@ -294,17 +292,17 @@ enum Notes: String {
         var param = [String: Any]()
         param = [
             ManagerConstants.APP_KEY: appKey,
-            ManagerConstants.INSTALL_ID: installId ?? "",
+            ManagerConstants.INSTALL_ID: installid ?? "",
         ]
         param[ManagerConstants.RECORDS] = records
         apiProcessor.requestScheme = ManagerConstants.HTTPS_SCHEME
         apiProcessor.encoding = JSONEncoding.default
         apiProcessor.path = ManagerConstants.INSTALL_LOG
-        apiProcessor.queryItems = [URLQueryItem(name: "installid", value: installId)]
+        apiProcessor.queryItems = [URLQueryItem(name: "installid", value: installid)]
         apiProcessor.parameters = param
         apiProcessor.headers = [
             "X-App-Key": appKey,
-            "X-Installid": installId ?? "",
+            "X-Installid": installid ?? "",
             "Content-Type": "application/json"
         ]
         apiProcessor.method = HTTPMethod.post

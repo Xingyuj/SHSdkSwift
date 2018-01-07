@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8A4DD4C81FEB9B00002E280C"
-               BuildableName = "SHSdkSwift.framework"
-               BlueprintName = "SHSdkSwift"
-               ReferencedContainer = "container:SHSdkSwift.xcodeproj">
+               BuildableName = "SwiftyStreethawk.framework"
+               BlueprintName = "SwiftyStreethawk"
+               ReferencedContainer = "container:SwiftyStreethawk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -36,6 +37,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -46,9 +48,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A4DD4C81FEB9B00002E280C"
-            BuildableName = "SHSdkSwift.framework"
-            BlueprintName = "SHSdkSwift"
-            ReferencedContainer = "container:SHSdkSwift.xcodeproj">
+            BuildableName = "SwiftyStreethawk.framework"
+            BlueprintName = "SwiftyStreethawk"
+            ReferencedContainer = "container:SwiftyStreethawk.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8A4DD4C81FEB9B00002E280C"
-            BuildableName = "SHSdkSwift.framework"
-            BlueprintName = "SHSdkSwift"
-            ReferencedContainer = "container:SHSdkSwift.xcodeproj">
+            BuildableName = "SwiftyStreethawk.framework"
+            BlueprintName = "SwiftyStreethawk"
+            ReferencedContainer = "container:SwiftyStreethawk.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

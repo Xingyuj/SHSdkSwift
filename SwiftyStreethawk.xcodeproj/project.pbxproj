@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DC1987EB90476FA2EDFA74C /* Pods_SwiftyStreethawk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B44A962B335B5361AF8152 /* Pods_SwiftyStreethawk.framework */; };
 		8A20F9511FF3127A004833C6 /* SHClientsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20F9501FF3127A004833C6 /* SHClientsManager.swift */; };
 		8A20F9531FF4B9AE004833C6 /* SHApiProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20F9521FF4B9AE004833C6 /* SHApiProcessor.swift */; };
 		8A20F9551FF4BE4E004833C6 /* ManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20F9541FF4BE4E004833C6 /* ManagerConstants.swift */; };
@@ -16,24 +17,24 @@
 		8AC62F291FF8730A004308B7 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC62F2C1FF8730A004308B7 /* SwiftyBeaver.framework */; };
 		8AC62F2A1FF8730A004308B7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC62F2D1FF8730A004308B7 /* SwiftyJSON.framework */; };
 		8AC62F691FF88130004308B7 /* SHClientsManager.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8A20F9501FF3127A004833C6 /* SHClientsManager.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		D2B65CEDE2EFD0A29C5A2E48 /* Pods_SHSdkSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A188780C88A761A8DA453C /* Pods_SHSdkSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75FED02DCFBE22C345FB72B0 /* Pods-SHSdkSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHSdkSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-SHSdkSwift/Pods-SHSdkSwift.release.xcconfig"; sourceTree = "<group>"; };
 		88A188780C88A761A8DA453C /* Pods_SHSdkSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SHSdkSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A06BA111FF7BF0E00017419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A20F9501FF3127A004833C6 /* SHClientsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHClientsManager.swift; sourceTree = "<group>"; };
 		8A20F9521FF4B9AE004833C6 /* SHApiProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHApiProcessor.swift; sourceTree = "<group>"; };
 		8A20F9541FF4BE4E004833C6 /* ManagerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerConstants.swift; sourceTree = "<group>"; };
-		8A4DD4C91FEB9B00002E280C /* SHSdkSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SHSdkSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A4DD4C91FEB9B00002E280C /* SwiftyStreethawk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyStreethawk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4DD4CC1FEB9B00002E280C /* SHSdkSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHSdkSwift.h; sourceTree = "<group>"; };
 		8A62C2E81FF5DBE900C0498C /* ManagerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerUtils.swift; sourceTree = "<group>"; };
 		8AC62F2B1FF8730A004308B7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC62F2C1FF8730A004308B7 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC62F2D1FF8730A004308B7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AF9CD181FECDD1700C86DEB /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		D8BEFD163A26AE9DAEDA794B /* Pods-SHSdkSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SHSdkSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SHSdkSwift/Pods-SHSdkSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		966595D2BB6AE89355022A9C /* Pods-SwiftyStreethawk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyStreethawk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyStreethawk/Pods-SwiftyStreethawk.debug.xcconfig"; sourceTree = "<group>"; };
+		BB42C4F4E0443F49CB1787BC /* Pods-SwiftyStreethawk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyStreethawk.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyStreethawk/Pods-SwiftyStreethawk.release.xcconfig"; sourceTree = "<group>"; };
+		C0B44A962B335B5361AF8152 /* Pods_SwiftyStreethawk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyStreethawk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +45,7 @@
 				8AC62F281FF8730A004308B7 /* Alamofire.framework in Frameworks */,
 				8AC62F291FF8730A004308B7 /* SwiftyBeaver.framework in Frameworks */,
 				8AC62F2A1FF8730A004308B7 /* SwiftyJSON.framework in Frameworks */,
-				D2B65CEDE2EFD0A29C5A2E48 /* Pods_SHSdkSwift.framework in Frameworks */,
+				1DC1987EB90476FA2EDFA74C /* Pods_SwiftyStreethawk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +55,8 @@
 		4C55F559228DD7DE85EE7D13 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D8BEFD163A26AE9DAEDA794B /* Pods-SHSdkSwift.debug.xcconfig */,
-				75FED02DCFBE22C345FB72B0 /* Pods-SHSdkSwift.release.xcconfig */,
+				966595D2BB6AE89355022A9C /* Pods-SwiftyStreethawk.debug.xcconfig */,
+				BB42C4F4E0443F49CB1787BC /* Pods-SwiftyStreethawk.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -67,6 +68,7 @@
 				8AC62F2C1FF8730A004308B7 /* SwiftyBeaver.framework */,
 				8AC62F2D1FF8730A004308B7 /* SwiftyJSON.framework */,
 				88A188780C88A761A8DA453C /* Pods_SHSdkSwift.framework */,
+				C0B44A962B335B5361AF8152 /* Pods_SwiftyStreethawk.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -74,7 +76,7 @@
 		8A4DD4BF1FEB9B00002E280C = {
 			isa = PBXGroup;
 			children = (
-				8A4DD4CB1FEB9B00002E280C /* SHSdkSwift */,
+				8A4DD4CB1FEB9B00002E280C /* SwiftyStreethawk */,
 				8A4DD4CA1FEB9B00002E280C /* Products */,
 				4C55F559228DD7DE85EE7D13 /* Pods */,
 				8202C71E888356515F735DC3 /* Frameworks */,
@@ -84,12 +86,12 @@
 		8A4DD4CA1FEB9B00002E280C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A4DD4C91FEB9B00002E280C /* SHSdkSwift.framework */,
+				8A4DD4C91FEB9B00002E280C /* SwiftyStreethawk.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8A4DD4CB1FEB9B00002E280C /* SHSdkSwift */ = {
+		8A4DD4CB1FEB9B00002E280C /* SwiftyStreethawk */ = {
 			isa = PBXGroup;
 			children = (
 				8AF9CD181FECDD1700C86DEB /* MyPlayground.playground */,
@@ -100,7 +102,7 @@
 				8A62C2E81FF5DBE900C0498C /* ManagerUtils.swift */,
 				8A20F9541FF4BE4E004833C6 /* ManagerConstants.swift */,
 			);
-			path = SHSdkSwift;
+			path = SwiftyStreethawk;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,9 +120,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8A4DD4C81FEB9B00002E280C /* SHSdkSwift */ = {
+		8A4DD4C81FEB9B00002E280C /* SwiftyStreethawk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A4DD4D11FEB9B00002E280C /* Build configuration list for PBXNativeTarget "SHSdkSwift" */;
+			buildConfigurationList = 8A4DD4D11FEB9B00002E280C /* Build configuration list for PBXNativeTarget "SwiftyStreethawk" */;
 			buildPhases = (
 				F65CC4A2C3F051C2CE9CF862 /* [CP] Check Pods Manifest.lock */,
 				8A4DD4C41FEB9B00002E280C /* Sources */,
@@ -133,9 +135,9 @@
 			);
 			dependencies = (
 			);
-			name = SHSdkSwift;
+			name = SwiftyStreethawk;
 			productName = SHSdkSwift;
-			productReference = 8A4DD4C91FEB9B00002E280C /* SHSdkSwift.framework */;
+			productReference = 8A4DD4C91FEB9B00002E280C /* SwiftyStreethawk.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -154,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8A4DD4C31FEB9B00002E280C /* Build configuration list for PBXProject "SHSdkSwift" */;
+			buildConfigurationList = 8A4DD4C31FEB9B00002E280C /* Build configuration list for PBXProject "SwiftyStreethawk" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -166,7 +168,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A4DD4C81FEB9B00002E280C /* SHSdkSwift */,
+				8A4DD4C81FEB9B00002E280C /* SwiftyStreethawk */,
 			);
 		};
 /* End PBXProject section */
@@ -194,7 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SHSdkSwift/Pods-SHSdkSwift-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyStreethawk/Pods-SwiftyStreethawk-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F65CC4A2C3F051C2CE9CF862 /* [CP] Check Pods Manifest.lock */ = {
@@ -208,7 +210,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SHSdkSwift-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyStreethawk-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -351,7 +353,7 @@
 		};
 		8A4DD4D21FEB9B00002E280C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8BEFD163A26AE9DAEDA794B /* Pods-SHSdkSwift.debug.xcconfig */;
+			baseConfigurationReference = 966595D2BB6AE89355022A9C /* Pods-SwiftyStreethawk.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -363,7 +365,7 @@
 				DYLIB_CURRENT_VERSION = 2.2.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
-				INFOPLIST_FILE = SHSdkSwift/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyStreethawk/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -380,7 +382,7 @@
 		};
 		8A4DD4D31FEB9B00002E280C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75FED02DCFBE22C345FB72B0 /* Pods-SHSdkSwift.release.xcconfig */;
+			baseConfigurationReference = BB42C4F4E0443F49CB1787BC /* Pods-SwiftyStreethawk.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -392,7 +394,7 @@
 				DYLIB_CURRENT_VERSION = 2.2.2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
-				INFOPLIST_FILE = SHSdkSwift/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyStreethawk/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -409,7 +411,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8A4DD4C31FEB9B00002E280C /* Build configuration list for PBXProject "SHSdkSwift" */ = {
+		8A4DD4C31FEB9B00002E280C /* Build configuration list for PBXProject "SwiftyStreethawk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A4DD4CF1FEB9B00002E280C /* Debug */,
@@ -418,7 +420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A4DD4D11FEB9B00002E280C /* Build configuration list for PBXNativeTarget "SHSdkSwift" */ = {
+		8A4DD4D11FEB9B00002E280C /* Build configuration list for PBXNativeTarget "SwiftyStreethawk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A4DD4D21FEB9B00002E280C /* Debug */,

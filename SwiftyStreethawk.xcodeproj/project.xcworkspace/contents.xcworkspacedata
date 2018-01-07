@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SHSdkSwift.xcodeproj">
+      location = "self:/Users/xingyuji/shengsiyouguan/SHSdkSwift/SwiftyStreethawk.xcodeproj">
    </FileRef>
 </Workspace>

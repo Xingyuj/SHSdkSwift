@@ -1,6 +1,6 @@
 //
-//  Dictionary.swift
-//  SHSdkSwift
+//  ManagerConstants.swift
+//  SwiftyStreethawk
 //
 //  Created by Xingyuji on 28/12/17.
 //  Copyright © 2017 com.xingyuji. All rights reserved.

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SwiftyStreethawk"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "Making a simple demo for SwiftyStreethawk SDK"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,9 @@ Pod::Spec.new do |s|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "SwiftyStreethawk SDK Demo Pod"
+  s.description  = <<-DESC
+  SwiftyStreethawk SDK Demo Pod, SwiftyStreethawk SDK Demo Pod
+                  DESC
 
   s.homepage     = "https://github.com/Xingyuj/SwiftyStreethawk"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -89,8 +91,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "SwiftyStreethawk", "SwiftyStreethawk/**/*.{h,m}"
+  s.exclude_files = "SwiftyStreethawk/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 

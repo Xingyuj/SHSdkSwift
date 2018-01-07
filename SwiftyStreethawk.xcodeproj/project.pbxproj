@@ -11,7 +11,7 @@
 		8A20F9511FF3127A004833C6 /* SHClientsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20F9501FF3127A004833C6 /* SHClientsManager.swift */; };
 		8A20F9531FF4B9AE004833C6 /* SHApiProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20F9521FF4B9AE004833C6 /* SHApiProcessor.swift */; };
 		8A20F9551FF4BE4E004833C6 /* ManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A20F9541FF4BE4E004833C6 /* ManagerConstants.swift */; };
-		8A4DD4CE1FEB9B00002E280C /* SHSdkSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A4DD4CC1FEB9B00002E280C /* SHSdkSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A4DD4CE1FEB9B00002E280C /* SwiftyStreethawk.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A4DD4CC1FEB9B00002E280C /* SwiftyStreethawk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A62C2E91FF5DBE900C0498C /* ManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62C2E81FF5DBE900C0498C /* ManagerUtils.swift */; };
 		8AC62F281FF8730A004308B7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC62F2B1FF8730A004308B7 /* Alamofire.framework */; };
 		8AC62F291FF8730A004308B7 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC62F2C1FF8730A004308B7 /* SwiftyBeaver.framework */; };
@@ -26,7 +26,7 @@
 		8A20F9521FF4B9AE004833C6 /* SHApiProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHApiProcessor.swift; sourceTree = "<group>"; };
 		8A20F9541FF4BE4E004833C6 /* ManagerConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerConstants.swift; sourceTree = "<group>"; };
 		8A4DD4C91FEB9B00002E280C /* SwiftyStreethawk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyStreethawk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A4DD4CC1FEB9B00002E280C /* SHSdkSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHSdkSwift.h; sourceTree = "<group>"; };
+		8A4DD4CC1FEB9B00002E280C /* SwiftyStreethawk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyStreethawk.h; sourceTree = "<group>"; };
 		8A62C2E81FF5DBE900C0498C /* ManagerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerUtils.swift; sourceTree = "<group>"; };
 		8AC62F2B1FF8730A004308B7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC62F2C1FF8730A004308B7 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				8AF9CD181FECDD1700C86DEB /* MyPlayground.playground */,
-				8A4DD4CC1FEB9B00002E280C /* SHSdkSwift.h */,
+				8A4DD4CC1FEB9B00002E280C /* SwiftyStreethawk.h */,
 				8A06BA111FF7BF0E00017419 /* Info.plist */,
 				8A20F9501FF3127A004833C6 /* SHClientsManager.swift */,
 				8A20F9521FF4B9AE004833C6 /* SHApiProcessor.swift */,
@@ -112,7 +112,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A4DD4CE1FEB9B00002E280C /* SHSdkSwift.h in Headers */,
+				8A4DD4CE1FEB9B00002E280C /* SwiftyStreethawk.h in Headers */,
 				8AC62F691FF88130004308B7 /* SHClientsManager.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +369,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fish.SHSdkSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = fish.SwiftyStreethawk;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -398,7 +398,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = fish.SHSdkSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = fish.SwiftyStreethawk;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

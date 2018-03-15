@@ -17,8 +17,8 @@ public enum Notes: String {
     }
 }
 
-@objc public class SHClientsManager:NSObject {
-    @objc public static var shProcessor: SHClientsManager?
+@objc public class SHApi:NSObject {
+    @objc public static var shProcessor: SHApi?
     @objc public var appKey: String
     @objc public var installid: String?
     @objc public var host: String?
@@ -62,7 +62,7 @@ public enum Notes: String {
     @objc public static func setupWithAppKey(_ appKey: String) {
         log.info("[StreetHawk] setupWithAppKey [\(appKey)]")
         
-        let manager = SHClientsManager.init(appKey: appKey)
+        let manager = SHApi.init(appKey: appKey)
         self.shProcessor = manager
         NotificationCenter.default.addObserver(
             manager,

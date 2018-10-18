@@ -129,7 +129,6 @@
 				8A4DD4C51FEB9B00002E280C /* Frameworks */,
 				8A4DD4C61FEB9B00002E280C /* Headers */,
 				8A4DD4C71FEB9B00002E280C /* Resources */,
-				A70B254B934E7E863BAB5449 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,21 +183,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A70B254B934E7E863BAB5449 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftyStreethawk/Pods-SwiftyStreethawk-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F65CC4A2C3F051C2CE9CF862 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
